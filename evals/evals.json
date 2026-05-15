@@ -46,6 +46,22 @@
         {"text": "问题清单总数 ≥5 条（这段代码的问题密度明显很高）"}
       ],
       "files": []
+    },
+    {
+      "id": 4,
+      "name": "security-review-memo-oauth-webhook",
+      "prompt": "Review this security review memo before I send it to the CTO. Is it strong enough to justify delaying launch?\n\nMemo: The new partner webhook integration accepts signed callback payloads. The vendor signs the JSON body with HMAC-SHA256 using a shared secret. Our endpoint verifies the signature header, then creates or updates a user record based on the email field in the payload. We store the shared secret in an environment variable. Replay protection is not implemented because the vendor retries failed deliveries. We log the full callback body for debugging. If verification fails, the endpoint returns 401 with either 'missing signature', 'bad signature', or 'unknown vendor'. The rollout plan is to launch to all enterprise tenants next week and monitor errors in production.",
+      "expected_output": "Trigger expert-review-panel and assemble security architecture, application security, privacy/compliance, SRE/reliability, and Devil's Advocate roles. Identify at least 5 concrete issues, including P0/P1 findings for missing replay protection, account takeover or unauthorized user mutation via trusting email identity, sensitive callback body logging, distinguishable auth error messages, and launch-risk/rollback gaps. The verdict should be NO-GO or CONDITIONAL GO until replay/idempotency, identity binding, redacted logging, generic failure responses, and staged rollout controls are addressed.",
+      "assertions": [
+        {"text": "Output contains a clear GO / CONDITIONAL GO / NO-GO verdict"},
+        {"text": "At least one security expert and one Devil's Advocate role are represented"},
+        {"text": "Flags missing replay protection or idempotency as a launch blocker or high-severity issue"},
+        {"text": "Flags trusting email from the webhook payload for user creation/update as an identity/account-takeover risk"},
+        {"text": "Flags full callback body logging as a privacy or secret-data exposure risk"},
+        {"text": "Each major issue includes location/context, evidence, impact, and concrete fix direction"},
+        {"text": "Verdict is not unconditional GO"}
+      ],
+      "files": []
     }
   ]
 }
