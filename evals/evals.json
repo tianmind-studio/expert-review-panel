@@ -46,6 +46,22 @@
         {"text": "问题清单总数 ≥5 条（这段代码的问题密度明显很高）"}
       ],
       "files": []
+    },
+    {
+      "id": 4,
+      "name": "grant-proposal-unclear-impact-metrics",
+      "prompt": "Please run expert-review-panel on this grant proposal summary and decide whether it is ready for submission:\n\nProject: Community AI Literacy Labs\nApplicant: Small nonprofit serving three mid-sized cities\nRequest: $250,000 for a 12-month pilot\nPlan: host weekly workshops, publish open educational materials, and train volunteer mentors.\nNeed statement: AI is changing every job, so everyone must learn it quickly.\nImpact target: reach as many residents as possible and make them confident using AI tools.\nEvaluation: collect participant testimonials and count workshop attendance.\nBudget summary: $180,000 staff and consultants, $45,000 events and marketing, $25,000 miscellaneous.\nSustainability: after the grant, the program should attract sponsors because AI is popular.",
+      "expected_output": "Trigger expert-review-panel and convene at least four perspectives: grant reviewer, program evaluation specialist, nonprofit finance/budget reviewer, community impact practitioner, and Devil's Advocate. Identify at least four serious readiness issues: 1) need statement is too generic and lacks local beneficiary evidence; 2) outcomes are not SMART or measurable beyond attendance/testimonials; 3) budget has an unexplained $25,000 miscellaneous line and weak cost justification; 4) sustainability plan is speculative and not operational; 5) scope may be too broad for a 12-month pilot across three cities. Verdict should be NO-GO or CONDITIONAL GO, not direct GO. Each issue must include location + evidence + reason + fix direction.",
+      "assertions": [
+        {"text": "Output includes one explicit verdict: GO / CONDITIONAL GO / NO-GO"},
+        {"text": "Verdict is not direct GO because evidence, measurement, budget, or sustainability gaps remain"},
+        {"text": "Flags the need statement as generic or missing local beneficiary evidence"},
+        {"text": "Flags impact targets or evaluation as not SMART/measurable enough"},
+        {"text": "Flags the unexplained miscellaneous budget line or weak cost justification"},
+        {"text": "Each issue includes location + evidence + fix direction"},
+        {"text": "Uses grant-review, evaluation, finance/budget, community-impact, and Devil's Advocate perspectives"}
+      ],
+      "files": []
     }
   ]
 }
