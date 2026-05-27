@@ -1,79 +1,78 @@
 # expert-review-panel
 
-> 一个面向作品投稿 / 答辩 / 提交前的严审 Claude skill：模拟顶级期刊审稿人、VC 尽调合伙人、资深架构师、竞赛评委组成的专家评审团，在你真正递出作品之前，把最容易致命的问题先翻出来。
+> 一个面向作品投稿 / 答辩 / 提交前的严审 Claude skill：模拟顶级期刊审稿人、VC 尽调合伙人、资深架构师、竞赛评委组成的专家评审团，在真正提交前先翻出最容易致命的问题。
 >
-> A Claude skill for ruthless pre-submission review: papers, business plans, pitch decks, code, competition materials, and creative work — reviewed by a simulated multi-expert panel before you ship.
+> A Claude skill for ruthless pre-submission review: papers, business plans, pitch decks, code, competition materials, and creative work, reviewed by a simulated multi-expert panel before you ship.
 
-[![Release](https://img.shields.io/github/v/release/491034170/expert-review-panel)](https://github.com/491034170/expert-review-panel/releases/latest)
-[![Live Guide](https://img.shields.io/badge/Live_Guide-GitHub_Pages-4FACFE)](https://491034170.github.io/expert-review-panel/)
-[![CI](https://github.com/491034170/expert-review-panel/actions/workflows/ci.yml/badge.svg)](https://github.com/491034170/expert-review-panel/actions/workflows/ci.yml)
-[![GitHub Repo stars](https://img.shields.io/github/stars/491034170/expert-review-panel)](https://github.com/491034170/expert-review-panel/stargazers)
+[![Release](https://img.shields.io/github/v/release/tianmind-studio/expert-review-panel)](https://github.com/tianmind-studio/expert-review-panel/releases/latest)
+[![CI](https://github.com/tianmind-studio/expert-review-panel/actions/workflows/ci.yml/badge.svg)](https://github.com/tianmind-studio/expert-review-panel/actions/workflows/ci.yml)
+[![GitHub Repo stars](https://img.shields.io/github/stars/tianmind-studio/expert-review-panel)](https://github.com/tianmind-studio/expert-review-panel/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Claude Skill](https://img.shields.io/badge/built%20for-Claude%20Skill-8A2BE2)](https://docs.claude.com)
 
-快速链接：
-- Live Guide：<https://491034170.github.io/expert-review-panel/>
-- 最新发布：<https://github.com/491034170/expert-review-panel/releases/latest>
-- 主技能说明：[`SKILL.md`](./SKILL.md)
-- Prompt recipes：[`examples/prompt-recipes.md`](./examples/prompt-recipes.md)
-- 完整样例报告：[`examples/full-sample-report-ssci-abstract.md`](./examples/full-sample-report-ssci-abstract.md)
-- 输出解剖：[`examples/output-anatomy.md`](./examples/output-anatomy.md)
-- 反群体思维设计：[`references/anti-groupthink.md`](./references/anti-groupthink.md)
-- 输出自检脚本：[`scripts/check_four_piece.py`](./scripts/check_four_piece.py)
-- 如果这个项目对你有帮助，欢迎点个 Star：<https://github.com/491034170/expert-review-panel/stargazers>
+## Quick Links
 
----
+- Latest release: <https://github.com/tianmind-studio/expert-review-panel/releases/latest>
+- Main skill: [`SKILL.md`](./SKILL.md)
+- Prompt recipes: [`examples/prompt-recipes.md`](./examples/prompt-recipes.md)
+- Full sample report: [`examples/full-sample-report-ssci-abstract.md`](./examples/full-sample-report-ssci-abstract.md)
+- Output anatomy: [`examples/output-anatomy.md`](./examples/output-anatomy.md)
+- Anti-groupthink design: [`references/anti-groupthink.md`](./references/anti-groupthink.md)
+- Output validator: [`scripts/check_four_piece.py`](./scripts/check_four_piece.py)
 
 ## English Quickstart
 
-### What you get
+### What You Get
 
-This skill runs a strict review workflow instead of a polite “looks good overall” pass.
+This skill runs a strict review workflow instead of a polite "looks good overall" pass.
 
 It produces:
+
 - A full expert-by-expert review
 - A priority-sorted issue list tagged `P0 / P1 / P2`
 - A clear `GO / CONDITIONAL GO / NO-GO` verdict
-- Critiques forced to follow the “four-piece rule”: `location + evidence + reason + concrete fix direction`
+- Critiques forced to follow the four-piece rule: `location + evidence + reason + concrete fix direction`
 
-### Best-fit use cases
+### Best-Fit Use Cases
 
 - Academic papers and thesis drafts
 - Business plans and pitch decks
 - Code review and technical design review
+- Product requirements documents
 - Competition submissions and defense materials
 - Creative writing and long-form content
 
-### Example prompts
+### Example Prompts
 
-- “Peer review this abstract like a harsh SSCI reviewer.”
-- “Red-team this pitch deck before investor meetings.”
-- “Review this code like a security auditor and principal architect.”
-- “帮我严审这份论文，看现在能不能投。”
-- “这份 BP 有没有会被投资人一票否决的硬伤？”
+- "Peer review this abstract like a harsh SSCI reviewer."
+- "Red-team this pitch deck before investor meetings."
+- "Review this code like a security auditor and principal architect."
+- "帮我严审这份论文，看现在能不能投。"
+- "这份 BP 有没有会被投资人一票否决的硬伤？"
 
 ### Install
 
-Option 1 — download the packaged skill:
-1. Open Releases: <https://github.com/491034170/expert-review-panel/releases/latest>
-2. Download `expert-review-panel-<version>.skill` or `expert-review-panel.skill`
-3. Drag the `.skill` file into Claude Desktop / Claude Code
+Option 1: download the packaged skill from Releases:
 
-Option 2 — install from source:
+1. Open <https://github.com/tianmind-studio/expert-review-panel/releases/latest>
+2. Download `expert-review-panel-<version>.skill` or `expert-review-panel.skill`
+3. Import the `.skill` file into Claude Desktop / Claude Code
+
+Option 2: install from source:
 
 ```bash
-git clone https://github.com/491034170/expert-review-panel.git ~/.claude/skills/expert-review-panel
+git clone https://github.com/tianmind-studio/expert-review-panel.git ~/.claude/skills/expert-review-panel
 ```
 
 Then restart Claude and invoke it with a review request.
 
-### Why this is different
+### Why This Is Different
 
-The main failure mode of LLM-based “multi-expert review” is not disagreement — it is shared blindness. Multiple simulated experts can still miss the same flaw because they come from the same base model. This repo explicitly counters that with anti-groupthink mechanisms such as blind review, Devil’s Advocate hard rules, minority-opinion protection, unanimous-check warnings, and chair self-challenge.
+The main failure mode of LLM-based multi-expert review is not disagreement. It is shared blindness. Multiple simulated experts can still miss the same flaw because they come from the same base model.
+
+This repo counters that with anti-groupthink mechanisms such as blind review, Devil's Advocate hard rules, minority-opinion protection, unanimous-check warnings, and chair self-challenge.
 
 See [`references/anti-groupthink.md`](./references/anti-groupthink.md).
-
----
 
 ## 中文说明
 
@@ -84,19 +83,21 @@ See [`references/anti-groupthink.md`](./references/anti-groupthink.md).
 - 论证链条里有断点，但没人直说
 - 商业计划里有一票否决项，但没人点穿
 - 代码里有生产级隐患，但 review 停留在表面
+- 产品需求里有支付、隐私、上线风控问题，但排期前没人挡住
 - 参赛材料方向跑偏，但答辩前没人扮演真正挑刺的评委
 
-`expert-review-panel` 的目标，就是在“正式提交之前”先做一次高压预审。
+`expert-review-panel` 的目标，是在正式提交之前先做一次高压预审。
 
 ### 你会拿到什么
 
 调用这个 skill 后，默认不是得到一段温和总结，而是得到三类可执行产物：
 
 1. 完整专家报告：每位专家从自己的角色出发独立发言
-2. 优先级问题清单：按 `P0 / P1 / P2` 排序，先改最致命的
+2. 优先级问题清单：按 `P0 / P1 / P2` 排序，先改最致命的问题
 3. 明确裁决：`GO / CONDITIONAL GO / NO-GO`
 
-并且每条负面意见都必须尽量满足“四件套”：
+每条负面意见都应尽量满足四件套：
+
 - 位置
 - 证据
 - 原因
@@ -105,164 +106,124 @@ See [`references/anti-groupthink.md`](./references/anti-groupthink.md).
 ### 适用场景
 
 | 作品类型 | 典型场景 |
-|---------|---------|
+| --- | --- |
 | 中文学术论文 | SCI/SSCI/CSSCI 投稿、硕博论文、期刊外审模拟 |
-| 英文学术论文 | Nature/Science、顶会（NeurIPS/ACL/CVPR）、基金申请、PhD 答辩 |
-| 商业方案 / PPT | A 轮路演、BP 内审、投决会前 dry-run |
+| 英文学术论文 | Nature/Science、顶会、基金申请、PhD 答辩 |
+| 商业方案 / PPT | 路演、BP 内审、投决会前 dry-run |
 | 代码 / 技术方案 | 上线前 code review、架构评审、安全审计 |
+| 产品需求文档 | MVP 范围评审、上线风险评审、指标与风控审查 |
 | 参赛材料 | 互联网+、挑战杯、美赛、各类 PPT 答辩 |
 | 创意文案 | 剧本、长文、广告创意 |
 
-### 核心设计
+## Core Design
 
-这个 skill 不是靠“多说几句狠话”来显得严格，而是靠结构化约束来减少 LLM 常见失守。
+This skill relies on structure, not just harsh wording:
 
-四条底层原则：
+1. No vague praise: negative findings should include location, evidence, reason, and fix direction.
+2. Dynamic panels: papers, business plans, code, products, and creative work use different expert libraries.
+3. Anti-groupthink: blind review, Devil's Advocate rules, minority-opinion protection, and chair self-challenge reduce shared blind spots.
+4. Final verdict required: every review ends with `GO / CONDITIONAL GO / NO-GO`.
 
-1. 禁止空话套话
-   - 每条负面意见都尽量满足“四件套”：位置 + 证据 + 原因 + 修改方向。
-2. 动态组队，拒绝万金油
-   - 论文、BP、代码、创意稿调用的是不同专家库，不用同一套“通用点评人”糊弄全部场景。
-3. 反群体思维
-   - 通过盲评、DA 硬规则、一致通过警示、少数意见保护、主席自我对抗等机制，降低“一起漏判”的风险。
-4. 最终必须下结论
-   - 不是“建议再优化一下”，而是明确给出 `GO / CONDITIONAL GO / NO-GO`。
-
-### 五阶段工作流
+## Workflow
 
 ```text
-阶段 0  接收与分诊   → 搞清作品类型 + 目标场景 + 规模档位
-阶段 1  独立评审     → 每位专家盲评，打 P0/P1/P2 + 置信度
-阶段 2  交叉辩论     → 1-2 轮，暴露分歧，魔鬼代言人登场
-阶段 3  主席裁决     → 打认识论标签、按场景校准阈值、下结论
-阶段 4  输出 + 自检  → 报告交付前跑 scripts/check_four_piece.py
+Phase 0  Intake and triage     -> identify artifact type, goal, and review depth
+Phase 1  Independent review    -> each expert reviews independently with P0/P1/P2 severity
+Phase 2  Cross-examination     -> surface disagreements and Devil's Advocate objections
+Phase 3  Chair verdict         -> calibrate severity and issue the final verdict
+Phase 4  Output self-check     -> run scripts/check_four_piece.py before delivery
 ```
 
-### 为什么这个仓库更适合公开分发
+## Repository Quality Gates
 
-除了 skill 本体，这个仓库还附带了一层“自己审自己”的基础设施：
+This repo includes basic maintainability checks:
 
-- `evals/evals.json`：3 条基础测试用例
-- `scripts/check_four_piece.py`：对输出进行格式层面的自动校验
-- GitHub Actions CI：自动检查脚本可运行、样例报告可通过 / 可失败
+- `evals/evals.json`: 4 baseline eval cases covering academic paper, business plan, code review, and product requirements review
+- `scripts/check_four_piece.py`: validates review output structure
+- GitHub Actions CI: validates repository structure and positive/negative fixture behavior
 
-这意味着它不是只有一份 prompt 文档，而是带了基本质量闸门的可维护 repo。
-
-### 目录结构
+## Directory Structure
 
 ```text
 expert-review-panel/
-├── SKILL.md                        # 主入口（skill YAML + 工作流）
-├── references/                     # 按作品类型分库
+├── SKILL.md
+├── references/
 │   ├── academic-chinese.md
-│   ├── academic-english.md         # 含 PhD Supervisor / External Examiner
+│   ├── academic-english.md
 │   ├── business-docs.md
 │   ├── code-tech.md
 │   ├── competition.md
 │   ├── creative-works.md
-│   └── anti-groupthink.md          # 反群体思维 6 条硬机制
-├── assets/                         # 输出模板
+│   └── anti-groupthink.md
+├── assets/
 │   ├── review-report-template.md
 │   ├── priority-list-template.md
 │   └── verdict-template.md
-├── scripts/                        # 后处理校验
-│   ├── check_four_piece.py         # 四件套/裁决/标签/占位符检查
+├── scripts/
+│   ├── check_four_piece.py
 │   └── README.md
 ├── evals/
-│   └── evals.json                  # 3 个测试用例
+│   └── evals.json
 ├── tests/
 │   └── fixtures/
-│       ├── valid-review-report.md   # CI 正向样例
-│       └── invalid-review-report.md # CI 反向样例
-└── .github/workflows/
-    └── ci.yml                       # 自动校验 workflow
+│       ├── valid-review-report.md
+│       └── invalid-review-report.md
+└── .github/
+    ├── ISSUE_TEMPLATE/
+    ├── PULL_REQUEST_TEMPLATE.md
+    └── workflows/ci.yml
 ```
 
-### 快速上手
-
-#### 方式 1：从 Releases 安装 `.skill`
-
-打开：<https://github.com/491034170/expert-review-panel/releases/latest>
-
-推荐下载：
-- `expert-review-panel-<version>.skill`：版本化安装包，适合分发与归档
-- `expert-review-panel.skill`：latest 别名包，适合直接安装
-- `expert-review-panel-repo.tar.gz`：源码快照，适合离线备份
-
-#### 方式 2：本地安装到 Claude Code / Claude Desktop
-
-```bash
-git clone https://github.com/491034170/expert-review-panel.git ~/.claude/skills/expert-review-panel
-```
-
-重启 Claude，然后对话里说：
-- “帮我严审这份论文”
-- “这份 BP 还有哪些致命漏洞？”
-- “review 一下这段代码，按生产标准来”
-
-即可触发。
-
-#### 方式 3：自检你自己写的评审报告
+## Self-Check Your Own Review Report
 
 ```bash
 python scripts/check_four_piece.py your-review-report.md
 ```
 
-四项检查全绿才算合格交付：
-- 明确裁决
-- P0 / P1 / P2 标签
-- 四件套关键词密度
-- 无模板占位符残留
+The validator checks for:
 
-### CI / 自动校验
+- Clear verdict
+- P0 / P1 / P2 labels
+- Four-piece-rule signal density
+- No leftover template placeholders
 
-仓库内置 GitHub Actions：
-- 自动编译检查 `scripts/check_four_piece.py`
-- 自动验证 `evals/evals.json` 结构
-- 自动对正向样例运行校验并要求通过
-- 自动对反向样例运行校验并要求失败
+## Contributing
 
-工作流文件见：[`.github/workflows/ci.yml`](./.github/workflows/ci.yml)
+Issues and PRs are welcome.
 
-### 版本历史
+High-value contribution areas:
 
-- **v1.1.1**（当前）——仓库与分发层补强版
-  - 新增 GitHub Actions CI workflow
-  - 新增正向 / 反向样例报告，自动校验 validator 行为
-  - README 首页重写，补全 releases / 安装 / 质量闸门说明
-  - 修复 `check_four_piece.py` 中 `CONDITIONAL GO` 被重复识别为 `GO` 的问题
-- **v1.1**——基于 v1.0 自审结果的修补版
-  - DA 硬规则（援引具体证据 / 可检验反例 / 指名对象 / 反驳边界）
-  - 学位论文 Supervisor + External Examiner 补齐
-  - 规模档位（轻量 3 人 / 标准 4 人 / 深度 6-8 人）
-  - 场景相对阈值表（顶级 / 标准 / 宽松）
-  - 模板占位符硬规定
-- **v1.0**——首版，含 5 阶段工作流 + 6 套专家库 + 反群体思维 playbook + 自检脚本
+- New expert libraries, such as medicine, law, game design, or grant review
+- New eval cases in `evals/evals.json`
+- Stronger anti-groupthink mechanisms
+- Clearer output templates
+- Better validation tooling and fixtures
 
-### 灵感来源
+For eval cases, prefer opening an eval proposal issue first. The repo includes:
 
-本 skill 设计时参考了 GitHub 上三个开源先例的思路：
+- `.github/ISSUE_TEMPLATE/eval_case.md`
+- `.github/PULL_REQUEST_TEMPLATE.md`
 
-- [`wan-huiyan/agent-review-panel`](https://github.com/wan-huiyan/agent-review-panel)——4–6 人对抗评审 + Supreme Judge 的工程实现
-- [`andrehuang/academic-writing-agents`](https://github.com/andrehuang/academic-writing-agents)——学术写作专用 12 Agent，Review-then-Act 模式
-- [`Imbad0202/academic-research-skills`](https://github.com/Imbad0202/academic-research-skills)——7 Agent 含 Devil's Advocate，0-100 评分 + Accept/Minor/Major/Reject 分层
+When adding an eval case:
 
-本项目在以上基础上强化了两件事：
-- 跨作品类型的动态组队
-- 中文学术 / 参赛场景的本地化
+- Sync with current `main` before choosing the eval id
+- Use the next available id
+- Keep the diff narrow
+- Avoid reformatting existing eval assertions
+- Do not use `Fixes` / `Closes` for an issue that is already completed
 
-### 贡献
+## Inspiration
 
-欢迎 issue 和 PR：
+This skill was inspired by public work on multi-agent review and academic writing agents, including:
 
-- 新增专家库（如医学论文、法律文书、游戏设计文档等）→ 在 `references/` 下加一个新的 `.md`，遵循“专家阵容 + 常见致命缺陷库 + 严苛度校准”三节结构。
-- 新增测试用例 → 在 `evals/evals.json` 里加一条。
-- 反群体思维机制改进 → PR 到 `references/anti-groupthink.md`，最好带一个真实失守案例说明为什么需要这条。
+- [`wan-huiyan/agent-review-panel`](https://github.com/wan-huiyan/agent-review-panel)
+- [`andrehuang/academic-writing-agents`](https://github.com/andrehuang/academic-writing-agents)
+- [`Imbad0202/academic-research-skills`](https://github.com/Imbad0202/academic-research-skills)
 
-### License
+This project focuses on cross-artifact review panels, localized Chinese academic / competition scenarios, and explicit anti-groupthink rules.
 
-[MIT](./LICENSE) — 自由用、自由改，保留版权声明即可。
+## License
 
----
+[MIT](./LICENSE)
 
 **Built by 王鑫 · Powered by Claude Skill**
