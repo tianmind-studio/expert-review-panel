@@ -277,4 +277,4 @@ This project focuses on cross-artifact review panels, localized Chinese academic
 
 [MIT](./LICENSE)
 
-**Built by 王鑫 · Powered by Claude Skill**
+**Built by 天智 · Powered by Claude Skill**
