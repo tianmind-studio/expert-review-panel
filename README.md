@@ -1,6 +1,6 @@
 # expert-review-panel
 
-> 一个面向作品投稿 / 答辩 / 提交前的严审 Claude skill：模拟顶级期刊审稿人、VC 尽调合伙人、资深架构师、竞赛评委组成的专家评审团，在真正提交前先翻出最容易致命的问题。
+> 一个面向作品投稿 / 答辩 / 提交前的严审 Claude/codex skill：模拟顶级期刊审稿人、VC 尽调合伙人、资深架构师、竞赛评委组成的专家评审团，在真正提交前先翻出最容易致命的问题。
 >
 > A Claude skill for ruthless pre-submission review: papers, business plans, pitch decks, code, competition materials, and creative work, reviewed by a simulated multi-expert panel before you ship.
 
