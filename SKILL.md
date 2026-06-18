@@ -1,6 +1,6 @@
 ---
 name: expert-review-panel
-description: 作品投稿 / 答辩 / 提交前的严审（strict pre-submission review）。适用于论文、商业方案、PPT、代码、参赛材料、创意文案等。触发关键词：专家评审、审稿、严审、挑毛病、打磨、红队、致命缺陷、能不能过、能中吗、有漏洞吗、peer review、critique、red team、stress test、pre-submission review。即便用户只说"帮看看还有什么问题"、"这方案有没有漏洞"、"这代码合理吗"，只要是在寻求一份无情诚实的第三方批评就应触发。动态召集 4–8 位对口专家（非通用评论者），按"独立评审 → 交叉辩论 → 主席裁决"流程，产出：完整专家报告 + P0/P1/P2 优先级问题清单 + GO / CONDITIONAL GO / NO-GO 明确裁决。若用户同时想润色语气或降 AIGC，可并行调用 de-ai-writing / anti-aigc-chinese。
+description: 作品投稿 / 答辩 / 提交前的严审（strict pre-submission review）。适用于论文、商业方案、PPT、代码、小程序、参赛材料、创意文案等。触发关键词：专家评审、审稿、严审、挑毛病、打磨、红队、致命缺陷、能不能过、能中吗、有漏洞吗、peer review、critique、red team、stress test、pre-submission review。即便用户只说"帮看看还有什么问题"、"这方案有没有漏洞"、"这代码合理吗"，只要是在寻求一份无情诚实的第三方批评就应触发。动态召集 4–8 位对口专家（非通用评论者），按"独立评审 → 交叉辩论 → 主席裁决"流程，产出：完整专家报告 + P0/P1/P2 优先级问题清单 + GO / CONDITIONAL GO / NO-GO 明确裁决。若用户同时想润色语气或降 AIGC，可并行调用 de-ai-writing / anti-aigc-chinese。
 ---
 
 # Expert Review Panel（专家评审团）
@@ -29,7 +29,7 @@ description: 作品投稿 / 答辩 / 提交前的严审（strict pre-submission 
 
 第一件事是搞清楚作品是什么、目标场景是什么、红线在哪里。不要上来就开骂，先问清楚（或从已有上下文提取清楚）以下几件事：
 
-- **作品类型**：中文学术论文 / 英文论文 / 商业计划书 / 产品方案 / 演示 PPT / 代码或技术方案 / 参赛作品 / 创意文案 / 其他。
+- **作品类型**：中文学术论文 / 英文论文 / 商业计划书 / 产品方案 / 演示 PPT / 代码或技术方案 / 小程序代码 / 参赛作品 / 创意文案 / 其他。
 - **提交场景**：期刊投稿（具体级别）/ 学位答辩 / 比赛（具体比赛名）/ 投资路演 / 内部汇报 / 客户交付 / 公开发表 / 其他。场景直接决定严苛度基准线——投 Nature 和投校内刊的标准根本不同。
 - **核心关切**：用户最担心什么？是方法论站不住、逻辑漏洞、视觉表达、还是语言表述？
 
@@ -60,11 +60,12 @@ description: 作品投稿 / 答辩 / 提交前的严审（strict pre-submission 
 - 中文学术论文 → `references/academic-chinese.md`
 - 英文学术论文 → `references/academic-english.md`
 - 商业方案 / PPT / 路演 → `references/business-docs.md`
+- 小程序代码 / 微信小程序提审前技术审查 / Taro 或 uni-app 的 `mp-weixin` 产物 → `references/miniapp-code.md`
 - 代码 / 技术方案 → `references/code-tech.md`
 - 参赛作品（含竞赛 PPT / 答辩材料） → `references/competition.md`
 - 创意作品（文案、剧本、内容创作） → `references/creative-works.md`
 
-**硬规定**：默认只读 1 个 reference。作品真的横跨类别时（例如含代码 Demo 的参赛 PPT）最多读 2 个。**绝不一次读全部 6 个**——那是 context 爆炸的起手式，而且根本用不上那么多。
+**硬规定**：默认只读 1 个 reference。作品真的横跨类别时（例如含代码 Demo 的参赛 PPT，或小程序前端 + 后端架构方案）最多读 2 个。小程序相关请求优先读 `references/miniapp-code.md`，只有明确涉及通用后端 / 基础设施架构时才额外读 `references/code-tech.md`。**绝不一次读全部 reference**——那是 context 爆炸的起手式，而且根本用不上那么多。
 
 每个参考文件会列出该领域约 8 位候选专家、每位的审查重点、常见致命缺陷库。**你只从中挑当前作品真正需要的若干位**——具体几位见阶段 1。
 
@@ -130,7 +131,7 @@ description: 作品投稿 / 答辩 / 提交前的严审（strict pre-submission 
 
 按以下结构产出最终文档。输出模板详见 `assets/` 下的三个模板文件，需要时读取使用。
 
-**交付前自检**：报告产出后，在交付给用户之前，如果环境支持运行脚本（Bash / 本地 Python），跑一下 `scripts/check_four_piece.py` 对自己的产出做后处理校验。脚本检查四件事：有没有给明确裁决、P0/P1/P2 标签是否齐全、四件套关键词密度是否达标、有没有残留 `{...}` 占位符。发现问题就修补再交付。这是"吃自己的狗粮"——本 skill 反复强调"必须如此"的东西，自己得先机器化兜一层底。
+**交付前自检**：报告产出后，在交付给用户之前，如果环境支持运行脚本（Bash / 本地 Python），跑一下 `scripts/check_four_piece.py` 对自己的产出做后处理校验。脚本检查五件事：有没有给明确裁决、P0/P1/P2 标签是否齐全、四件套关键词密度是否达标、每条显式问题块是否逐条具备四件套、有没有残留 `{...}` 占位符。发现问题就修补再交付。这是"吃自己的狗粮"——本 skill 反复强调"必须如此"的东西，自己得先机器化兜一层底。
 
 脚本不判断内容质量，只抓格式层面的失守；内容层面的严苛仍由专家阵容保证。
 

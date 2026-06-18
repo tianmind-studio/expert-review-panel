@@ -24,7 +24,7 @@ jobs:
 
       - name: Validate repository structure
         run: |
-          python - <<'PY'
+          python3 - <<'PY'
           from pathlib import Path
           import json
 
@@ -32,11 +32,15 @@ jobs:
               'README.md',
               'SKILL.md',
               'scripts/check_four_piece.py',
+              'scripts/package_skill.py',
               'scripts/README.md',
               'evals/evals.json',
               'references/anti-groupthink.md',
+              'references/miniapp-code.md',
               'tests/fixtures/valid-review-report.md',
               'tests/fixtures/invalid-review-report.md',
+              'tests/fixtures/incomplete-issue-report.md',
+              'examples/full-sample-report-ssci-abstract.md',
           ]
           missing = [path for path in required if not Path(path).exists()]
           if missing:
@@ -52,15 +56,53 @@ jobs:
           PY
 
       - name: Compile validator
-        run: python -m py_compile scripts/check_four_piece.py
+        run: python3 -m py_compile scripts/check_four_piece.py scripts/package_skill.py
+
+      - name: Package skill archive
+        run: |
+          python3 scripts/package_skill.py --version ci
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile
+
+          archive_path = Path('dist/expert-review-panel.skill')
+          if not archive_path.exists():
+              raise SystemExit('missing generated skill archive')
+
+          with zipfile.ZipFile(archive_path) as archive:
+              names = set(archive.namelist())
+
+          required = {
+              'expert-review-panel/SKILL.md',
+              'expert-review-panel/references/anti-groupthink.md',
+              'expert-review-panel/references/miniapp-code.md',
+              'expert-review-panel/scripts/check_four_piece.py',
+          }
+          missing = sorted(required - names)
+          if missing:
+              raise SystemExit(f'package missing expected files: {missing}')
+
+          print('Package archive looks good.')
+          PY
 
       - name: Valid fixture should pass
-        run: python scripts/check_four_piece.py tests/fixtures/valid-review-report.md
+        run: python3 scripts/check_four_piece.py tests/fixtures/valid-review-report.md
+
+      - name: Full sample report should pass
+        run: python3 scripts/check_four_piece.py examples/full-sample-report-ssci-abstract.md
 
       - name: Invalid fixture should fail
         run: |
-          if python scripts/check_four_piece.py tests/fixtures/invalid-review-report.md; then
+          if python3 scripts/check_four_piece.py tests/fixtures/invalid-review-report.md; then
             echo 'Expected invalid fixture to fail validation'
             exit 1
           fi
           echo 'Invalid fixture failed as expected.'
+
+      - name: Incomplete issue fixture should fail
+        run: |
+          if python3 scripts/check_four_piece.py tests/fixtures/incomplete-issue-report.md; then
+            echo 'Expected incomplete issue fixture to fail per-issue validation'
+            exit 1
+          fi
+          echo 'Incomplete issue fixture failed as expected.'

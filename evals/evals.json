@@ -1,6 +1,6 @@
 {
   "skill_name": "expert-review-panel",
-  "notes": "5 条基础测试用例，覆盖学术论文、商业计划书、代码、产品需求文档、安全审查备忘录五种作品类型。每条测试都应触发本 skill 并产出带 P0/P1/P2 标签、四件套合规、明确 GO/NO-GO 的报告。可用 scripts/check_four_piece.py 对输出做自动化检查。",
+  "notes": "6 条基础测试用例，覆盖学术论文、商业计划书、代码、小程序代码、产品需求文档、安全审查备忘录六种作品类型。每条测试都应触发本 skill 并产出带 P0/P1/P2 标签、四件套合规、明确 GO/NO-GO 的报告。可用 scripts/check_four_piece.py 对输出做自动化检查。",
   "evals": [
     {
       "id": 1,
@@ -93,6 +93,22 @@
         {"text": "至少指出审计日志字段不足，影响追责和合规"},
         {"text": "每条问题含位置 + 证据 + 修改方向三要素"},
         {"text": "召集安全审计和合规/隐私视角专家至少各 1 位"}
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "miniapp-code-privacy-ugc-auth-risk",
+      "prompt": "帮我严审这个微信小程序项目，准备提审前合并。重点看代码、云函数、隐私和内容安全风险：\n\n```json\n// app.json\n{\n  \"pages\": [\"pages/index/index\", \"pages/post/post\"],\n  \"permission\": {\n    \"scope.userLocation\": { \"desc\": \"用于推荐附近内容\" }\n  }\n}\n```\n\n```js\n// app.js\nApp({\n  onLaunch() {\n    wx.getUserProfile({\n      desc: '完善会员资料',\n      success: (res) => wx.setStorageSync('profile', res.userInfo)\n    })\n  }\n})\n```\n\n```js\n// pages/post/post.js\nPage({\n  data: { content: '', userId: '' },\n  submit() {\n    wx.request({\n      url: 'https://api.example.com/posts',\n      method: 'POST',\n      data: {\n        openid: wx.getStorageSync('openid'),\n        content: this.data.content\n      },\n      success: () => wx.showToast({ title: '发布成功' })\n    })\n  }\n})\n```\n\n```js\n// cloudfunctions/login/index.js\nexports.main = async (event) => {\n  return {\n    openid: event.openid || event.userInfo.openId,\n    role: event.role || 'user'\n  }\n}\n```\n\n提审备注：用户可以登录后发布短文字动态，后续再补内容审核。",
+      "expected_output": "触发 expert-review-panel 并优先读取小程序代码专家库，召集小程序架构 + 微信平台合规 + 云函数/后端安全 + 隐私 + 内容安全 + DA 至少 4-5 位；识别至少 5 条关键问题：1) 云函数信任 event.openid / event.userInfo.openId / event.role，身份和角色可被前端伪造，P0；2) 发布接口信任前端传入 openid，缺少服务端鉴权和对象级权限校验，P0；3) UGC 短文字直接发布且备注称后续再补内容审核，缺少内容安全接口或人工复核闭环，P0/P1；4) onLaunch 即调用 wx.getUserProfile 并本地存储 profile，与具体场景和隐私授权时机不匹配，P1；5) app.json 声明定位权限但示例功能只发布短文字动态，需说明目的、最小化收集或移除，P1；6) submit 缺少 loading、禁用重复提交、失败态和重试/幂等，P2/P1。裁决应为 NO-GO 或 CONDITIONAL GO，不能直接 GO。每条问题必须含位置+证据+原因+修改方向。",
+      "assertions": [
+        {"text": "输出包含 GO / CONDITIONAL GO / NO-GO 明确裁决，且不应直接 GO"},
+        {"text": "优先召集小程序、微信平台合规、云函数/后端安全、隐私或内容安全相关专家角色"},
+        {"text": "至少指出 cloudfunctions/login/index.js 信任前端传入 openid 或 role 的身份伪造问题，并标为 P0 或严重问题"},
+        {"text": "至少指出 pages/post/post.js 发布接口信任前端 openid 或缺少服务端鉴权"},
+        {"text": "至少指出 UGC 内容发布缺少内容安全检测或复核闭环"},
+        {"text": "至少指出 app.js onLaunch 过早调用 wx.getUserProfile 或隐私授权时机不合理"},
+        {"text": "每条关键问题含位置 + 证据 + 原因 + 修改方向四件套"}
       ],
       "files": []
     }

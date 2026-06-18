@@ -17,6 +17,7 @@
 - Prompt recipes: [`examples/prompt-recipes.md`](./examples/prompt-recipes.md)
 - Full sample report: [`examples/full-sample-report-ssci-abstract.md`](./examples/full-sample-report-ssci-abstract.md)
 - Output anatomy: [`examples/output-anatomy.md`](./examples/output-anatomy.md)
+- Mini Program code panel: [`references/miniapp-code.md`](./references/miniapp-code.md)
 - Anti-groupthink design: [`references/anti-groupthink.md`](./references/anti-groupthink.md)
 - Output validator: [`scripts/check_four_piece.py`](./scripts/check_four_piece.py)
 
@@ -38,6 +39,7 @@ It produces:
 - Academic papers and thesis drafts
 - Business plans and pitch decks
 - Code review and technical design review
+- WeChat Mini Program code, cloud functions, privacy, and release-readiness review
 - Product requirements documents
 - Competition submissions and defense materials
 - Creative writing and long-form content
@@ -47,6 +49,7 @@ It produces:
 - "Peer review this abstract like a harsh SSCI reviewer."
 - "Red-team this pitch deck before investor meetings."
 - "Review this code like a security auditor and principal architect."
+- "严审这个微信小程序项目，看有没有提审、隐私、云函数或支付风险。"
 - "帮我严审这份论文，看现在能不能投。"
 - "这份 BP 有没有会被投资人一票否决的硬伤？"
 
@@ -66,6 +69,26 @@ git clone https://github.com/tianmind-studio/expert-review-panel.git ~/.claude/s
 
 Then restart Claude and invoke it with a review request.
 
+### Share With Others
+
+For most users, send the latest release link:
+
+<https://github.com/tianmind-studio/expert-review-panel/releases/latest>
+
+They can download `expert-review-panel.skill` and import it into Claude Desktop / Claude Code.
+
+For developers who prefer source install, send:
+
+```bash
+git clone https://github.com/tianmind-studio/expert-review-panel.git ~/.claude/skills/expert-review-panel
+```
+
+Maintainers can rebuild the release asset locally:
+
+```bash
+python3 scripts/package_skill.py --version v1.2.0
+```
+
 ### Why This Is Different
 
 The main failure mode of LLM-based multi-expert review is not disagreement. It is shared blindness. Multiple simulated experts can still miss the same flaw because they come from the same base model.
@@ -83,6 +106,7 @@ See [`references/anti-groupthink.md`](./references/anti-groupthink.md).
 - 论证链条里有断点，但没人直说
 - 商业计划里有一票否决项，但没人点穿
 - 代码里有生产级隐患，但 review 停留在表面
+- 小程序提审前有隐私、云函数、内容安全或支付风险，但没人把代码和平台规则一起看
 - 产品需求里有支付、隐私、上线风控问题，但排期前没人挡住
 - 参赛材料方向跑偏，但答辩前没人扮演真正挑刺的评委
 
@@ -111,6 +135,7 @@ See [`references/anti-groupthink.md`](./references/anti-groupthink.md).
 | 英文学术论文 | Nature/Science、顶会、基金申请、PhD 答辩 |
 | 商业方案 / PPT | 路演、BP 内审、投决会前 dry-run |
 | 代码 / 技术方案 | 上线前 code review、架构评审、安全审计 |
+| 微信小程序代码 | 提审前技术预审、云函数安全、隐私权限、内容安全、支付风控 |
 | 产品需求文档 | MVP 范围评审、上线风险评审、指标与风控审查 |
 | 参赛材料 | 互联网+、挑战杯、美赛、各类 PPT 答辩 |
 | 创意文案 | 剧本、长文、广告创意 |
@@ -138,8 +163,9 @@ Phase 4  Output self-check     -> run scripts/check_four_piece.py before deliver
 
 This repo includes basic maintainability checks:
 
-- `evals/evals.json`: 4 baseline eval cases covering academic paper, business plan, code review, and product requirements review
-- `scripts/check_four_piece.py`: validates review output structure
+- `evals/evals.json`: 6 baseline eval cases covering academic paper, business plan, code review, Mini Program review, product requirements review, and security review
+- `scripts/check_four_piece.py`: validates review output structure, including per-issue four-piece compliance
+- `scripts/package_skill.py`: builds release-ready `.skill` archives
 - GitHub Actions CI: validates repository structure and positive/negative fixture behavior
 
 ## Directory Structure
@@ -152,6 +178,7 @@ expert-review-panel/
 │   ├── academic-english.md
 │   ├── business-docs.md
 │   ├── code-tech.md
+│   ├── miniapp-code.md
 │   ├── competition.md
 │   ├── creative-works.md
 │   └── anti-groupthink.md
@@ -161,13 +188,15 @@ expert-review-panel/
 │   └── verdict-template.md
 ├── scripts/
 │   ├── check_four_piece.py
+│   ├── package_skill.py
 │   └── README.md
 ├── evals/
 │   └── evals.json
 ├── tests/
 │   └── fixtures/
 │       ├── valid-review-report.md
-│       └── invalid-review-report.md
+│       ├── invalid-review-report.md
+│       └── incomplete-issue-report.md
 └── .github/
     ├── ISSUE_TEMPLATE/
     ├── PULL_REQUEST_TEMPLATE.md
@@ -177,7 +206,7 @@ expert-review-panel/
 ## Self-Check Your Own Review Report
 
 ```bash
-python scripts/check_four_piece.py your-review-report.md
+python3 scripts/check_four_piece.py your-review-report.md
 ```
 
 The validator checks for:
@@ -185,6 +214,7 @@ The validator checks for:
 - Clear verdict
 - P0 / P1 / P2 labels
 - Four-piece-rule signal density
+- Per-issue four-piece-rule compliance for explicit issue blocks
 - No leftover template placeholders
 
 ## Contributing

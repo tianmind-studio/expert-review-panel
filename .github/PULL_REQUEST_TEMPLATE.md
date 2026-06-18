@@ -28,10 +28,12 @@ Complete this section if the PR changes `evals/evals.json`.
 
 ## Verification
 
-- [ ] `python -m json.tool evals/evals.json`
-- [ ] `python -m py_compile scripts/check_four_piece.py`
-- [ ] `python scripts/check_four_piece.py tests/fixtures/valid-review-report.md`
+- [ ] `python3 -m json.tool evals/evals.json`
+- [ ] `python3 -m py_compile scripts/check_four_piece.py`
+- [ ] `python3 scripts/check_four_piece.py tests/fixtures/valid-review-report.md`
+- [ ] `python3 scripts/check_four_piece.py examples/full-sample-report-ssci-abstract.md`
 - [ ] Invalid fixture still fails as expected.
+- [ ] Incomplete issue fixture still fails per-issue validation.
 - [ ] `git diff --check`
 
 ## Notes for maintainers
