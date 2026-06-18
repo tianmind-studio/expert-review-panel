@@ -55,13 +55,28 @@ It produces:
 
 ### Install
 
-Option 1: download the packaged skill from Releases:
+Option 1: Claude Desktop / Claude Code packaged install
 
 1. Open <https://github.com/tianmind-studio/expert-review-panel/releases/latest>
 2. Download `expert-review-panel-<version>.skill` or `expert-review-panel.skill`
 3. Import the `.skill` file into Claude Desktop / Claude Code
 
-Option 2: install from source:
+Option 2: Codex source install
+
+```bash
+git clone https://github.com/tianmind-studio/expert-review-panel.git ~/.codex/skills/expert-review-panel
+```
+
+If the skill already exists:
+
+```bash
+cd ~/.codex/skills/expert-review-panel
+git pull
+```
+
+Open a new Codex thread after installing or updating so the skill list refreshes.
+
+Option 3: Claude source install
 
 ```bash
 git clone https://github.com/tianmind-studio/expert-review-panel.git ~/.claude/skills/expert-review-panel
@@ -75,9 +90,15 @@ For most users, send the latest release link:
 
 <https://github.com/tianmind-studio/expert-review-panel/releases/latest>
 
-They can download `expert-review-panel.skill` and import it into Claude Desktop / Claude Code.
+Claude users can download `expert-review-panel.skill` and import it into Claude Desktop / Claude Code.
 
-For developers who prefer source install, send:
+Codex users can install from source:
+
+```bash
+git clone https://github.com/tianmind-studio/expert-review-panel.git ~/.codex/skills/expert-review-panel
+```
+
+Claude users who prefer source install can use:
 
 ```bash
 git clone https://github.com/tianmind-studio/expert-review-panel.git ~/.claude/skills/expert-review-panel

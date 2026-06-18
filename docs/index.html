@@ -279,7 +279,7 @@
       <h2>怎么安装 / How to install</h2>
       <div class="grid">
         <div class="card">
-          <strong>方式一：下载打包版本</strong>
+          <strong>方式一：Claude 打包安装</strong>
           <ul>
             <li>打开 <a href="https://github.com/tianmind-studio/expert-review-panel/releases/latest">Latest Release</a></li>
             <li>下载 <code>expert-review-panel.skill</code> 或版本化安装包</li>
@@ -287,21 +287,27 @@
           </ul>
         </div>
         <div class="card">
-          <strong>方式二：从源码安装</strong>
+          <strong>方式二：Codex 源码安装</strong>
+          <pre><code>git clone https://github.com/tianmind-studio/expert-review-panel.git \
+~/.codex/skills/expert-review-panel</code></pre>
+          <p>安装或更新后，打开一个新的 Codex 线程以刷新 skill 列表。</p>
+        </div>
+        <div class="card">
+          <strong>方式三：Claude 源码安装</strong>
           <pre><code>git clone https://github.com/tianmind-studio/expert-review-panel.git \
 ~/.claude/skills/expert-review-panel</code></pre>
           <p>重启 Claude 后，直接给出作品并要求严审即可。</p>
         </div>
         <div class="card">
-          <strong>方式三：分享给别人</strong>
+          <strong>方式四：分享给别人</strong>
           <ul>
             <li>直接发 <a href="https://github.com/tianmind-studio/expert-review-panel/releases/latest">Latest Release</a></li>
-            <li>对方下载 <code>expert-review-panel.skill</code> 后导入 Claude</li>
-            <li>开发者也可以用源码安装命令自行 clone</li>
+            <li>Claude 用户下载 <code>expert-review-panel.skill</code></li>
+            <li>Codex 用户使用 <code>~/.codex/skills/</code> 源码安装命令</li>
           </ul>
         </div>
         <div class="card">
-          <strong>方式四：先读文档再决定</strong>
+          <strong>方式五：先读文档再决定</strong>
           <ul>
             <li><a href="https://github.com/tianmind-studio/expert-review-panel/blob/main/SKILL.md">SKILL.md</a></li>
             <li><a href="https://github.com/tianmind-studio/expert-review-panel/blob/main/examples/prompt-recipes.md">Prompt recipes</a></li>
