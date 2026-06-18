@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="expert-review-panel：严审型 Claude Skill，面向论文、商业计划、代码、竞赛材料与创意作品的提交前高压预审。" />
+  <meta name="description" content="expert-review-panel：严审型 Claude Skill，面向论文、商业计划、代码、小程序、竞赛材料与创意作品的提交前高压预审。" />
   <title>expert-review-panel · Live Guide</title>
   <style>
     :root {
@@ -183,17 +183,17 @@
       <div class="eyebrow">Claude Skill · High-pressure pre-submission review</div>
       <h1>expert-review-panel</h1>
       <p class="sub">
-        一个面向论文、商业计划、代码、竞赛材料与创意作品的严审型 Claude Skill。
+        一个面向论文、商业计划、代码、小程序、竞赛材料与创意作品的严审型 Claude Skill。
         目标不是“给点温和建议”，而是在你真正提交之前，先把最可能致命的问题翻出来。
       </p>
       <div class="actions">
-        <a class="btn primary" href="https://github.com/491034170/expert-review-panel/releases/latest">下载最新 Release</a>
-        <a class="btn" href="https://github.com/491034170/expert-review-panel">查看源码仓库</a>
-        <a class="btn" href="https://github.com/491034170/expert-review-panel/blob/main/SKILL.md">阅读 SKILL.md</a>
+        <a class="btn primary" href="https://github.com/tianmind-studio/expert-review-panel/releases/latest">下载最新 Release</a>
+        <a class="btn" href="https://github.com/tianmind-studio/expert-review-panel">查看源码仓库</a>
+        <a class="btn" href="https://github.com/tianmind-studio/expert-review-panel/blob/main/SKILL.md">阅读 SKILL.md</a>
       </div>
       <div class="badges">
         <span class="badge">输出结构：专家报告 + P0/P1/P2 + 最终裁决</span>
-        <span class="badge">适配场景：论文 / BP / 代码 / 比赛 / 创意文案</span>
+        <span class="badge">适配场景：论文 / BP / 代码 / 小程序 / 比赛 / 创意文案</span>
         <span class="badge">设计重点：反群体思维、少数意见保护、主席自我对抗</span>
       </div>
       <div class="stats">
@@ -224,10 +224,10 @@
         </div>
         <div class="card">
           <span class="pill">Engineering</span>
-          <strong>代码 / 架构方案 / 技术评审</strong>
+          <strong>代码 / 小程序 / 架构方案 / 技术评审</strong>
           <ul>
             <li>不只挑格式，而是逼近生产事故、扩展性、可维护性问题</li>
-            <li>适合上线前 review、方案评审、安全敏感变更</li>
+            <li>适合上线前 review、小程序提审前预审、方案评审、安全敏感变更</li>
           </ul>
         </div>
         <div class="card">
@@ -281,23 +281,31 @@
         <div class="card">
           <strong>方式一：下载打包版本</strong>
           <ul>
-            <li>打开 <a href="https://github.com/491034170/expert-review-panel/releases/latest">Latest Release</a></li>
+            <li>打开 <a href="https://github.com/tianmind-studio/expert-review-panel/releases/latest">Latest Release</a></li>
             <li>下载 <code>expert-review-panel.skill</code> 或版本化安装包</li>
             <li>导入 Claude Desktop / Claude Code</li>
           </ul>
         </div>
         <div class="card">
           <strong>方式二：从源码安装</strong>
-          <pre><code>git clone https://github.com/491034170/expert-review-panel.git \
+          <pre><code>git clone https://github.com/tianmind-studio/expert-review-panel.git \
 ~/.claude/skills/expert-review-panel</code></pre>
           <p>重启 Claude 后，直接给出作品并要求严审即可。</p>
         </div>
         <div class="card">
-          <strong>方式三：先读文档再决定</strong>
+          <strong>方式三：分享给别人</strong>
           <ul>
-            <li><a href="https://github.com/491034170/expert-review-panel/blob/main/SKILL.md">SKILL.md</a></li>
-            <li><a href="https://github.com/491034170/expert-review-panel/blob/main/examples/prompt-recipes.md">Prompt recipes</a></li>
-            <li><a href="https://github.com/491034170/expert-review-panel/blob/main/references/anti-groupthink.md">Anti-groupthink notes</a></li>
+            <li>直接发 <a href="https://github.com/tianmind-studio/expert-review-panel/releases/latest">Latest Release</a></li>
+            <li>对方下载 <code>expert-review-panel.skill</code> 后导入 Claude</li>
+            <li>开发者也可以用源码安装命令自行 clone</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>方式四：先读文档再决定</strong>
+          <ul>
+            <li><a href="https://github.com/tianmind-studio/expert-review-panel/blob/main/SKILL.md">SKILL.md</a></li>
+            <li><a href="https://github.com/tianmind-studio/expert-review-panel/blob/main/examples/prompt-recipes.md">Prompt recipes</a></li>
+            <li><a href="https://github.com/tianmind-studio/expert-review-panel/blob/main/references/anti-groupthink.md">Anti-groupthink notes</a></li>
           </ul>
         </div>
       </div>
@@ -309,12 +317,14 @@
         <span class="tag">论文</span>
         <span class="tag">BP</span>
         <span class="tag">代码</span>
+        <span class="tag">小程序</span>
         <span class="tag">竞赛</span>
         <span class="tag">创意作品</span>
         <ul>
           <li>“帮我严审这份论文，看现在能不能投。”</li>
           <li>“这份 BP 有没有会被投资人一票否决的硬伤？”</li>
           <li>“Review 这段代码，按生产事故视角来挑问题。”</li>
+          <li>“严审这个微信小程序项目，看提审、隐私、云函数和支付风险。”</li>
           <li>“像最苛刻的答辩评委一样，预审这份参赛材料。”</li>
         </ul>
       </div>
@@ -323,9 +333,11 @@
     <section>
       <h2>深入阅读 / Explore more</h2>
       <div class="grid">
-        <div class="card"><strong>完整样例报告</strong><p><a href="https://github.com/491034170/expert-review-panel/blob/main/examples/full-sample-report-ssci-abstract.md">full-sample-report-ssci-abstract.md</a></p></div>
-        <div class="card"><strong>输出解剖</strong><p><a href="https://github.com/491034170/expert-review-panel/blob/main/examples/output-anatomy.md">output-anatomy.md</a></p></div>
-        <div class="card"><strong>自检脚本</strong><p><a href="https://github.com/491034170/expert-review-panel/blob/main/scripts/check_four_piece.py">scripts/check_four_piece.py</a></p></div>
+        <div class="card"><strong>完整样例报告</strong><p><a href="https://github.com/tianmind-studio/expert-review-panel/blob/main/examples/full-sample-report-ssci-abstract.md">full-sample-report-ssci-abstract.md</a></p></div>
+        <div class="card"><strong>输出解剖</strong><p><a href="https://github.com/tianmind-studio/expert-review-panel/blob/main/examples/output-anatomy.md">output-anatomy.md</a></p></div>
+        <div class="card"><strong>小程序专家库</strong><p><a href="https://github.com/tianmind-studio/expert-review-panel/blob/main/references/miniapp-code.md">references/miniapp-code.md</a></p></div>
+        <div class="card"><strong>自检脚本</strong><p><a href="https://github.com/tianmind-studio/expert-review-panel/blob/main/scripts/check_four_piece.py">scripts/check_four_piece.py</a></p></div>
+        <div class="card"><strong>打包脚本</strong><p><a href="https://github.com/tianmind-studio/expert-review-panel/blob/main/scripts/package_skill.py">scripts/package_skill.py</a></p></div>
       </div>
     </section>
 

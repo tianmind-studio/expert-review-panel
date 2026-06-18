@@ -1,8 +1,8 @@
 blank_issues_enabled: true
 contact_links:
   - name: expert-review-panel discussions
-    url: https://github.com/491034170/expert-review-panel/discussions
+    url: https://github.com/tianmind-studio/expert-review-panel/discussions
     about: Discuss new review scenarios, workflow ideas, or packaging improvements.
   - name: expert-review-panel latest release
-    url: https://github.com/491034170/expert-review-panel/releases/latest
+    url: https://github.com/tianmind-studio/expert-review-panel/releases/latest
     about: Download the latest packaged release and source snapshot.
