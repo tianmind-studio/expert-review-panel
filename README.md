@@ -1,14 +1,14 @@
 # expert-review-panel
 
-> 一个面向作品投稿 / 答辩 / 提交前的严审 Claude/codex skill：模拟顶级期刊审稿人、VC 尽调合伙人、资深架构师、竞赛评委组成的专家评审团，在真正提交前先翻出最容易致命的问题。
+> 一个面向作品投稿 / 答辩 / 提交前的严审 Claude / Codex skill：模拟顶级期刊审稿人、VC 尽调合伙人、资深架构师、竞赛评委组成的专家评审团，在真正提交前先翻出最容易致命的问题。
 >
-> A Claude skill for ruthless pre-submission review: papers, business plans, pitch decks, code, competition materials, and creative work, reviewed by a simulated multi-expert panel before you ship.
+> A Claude / Codex skill for ruthless pre-submission review: papers, business plans, pitch decks, code, Mini Programs, competition materials, and creative work, reviewed by a simulated multi-expert panel before you ship.
 
 [![Release](https://img.shields.io/github/v/release/tianmind-studio/expert-review-panel)](https://github.com/tianmind-studio/expert-review-panel/releases/latest)
 [![CI](https://github.com/tianmind-studio/expert-review-panel/actions/workflows/ci.yml/badge.svg)](https://github.com/tianmind-studio/expert-review-panel/actions/workflows/ci.yml)
 [![GitHub Repo stars](https://img.shields.io/github/stars/tianmind-studio/expert-review-panel)](https://github.com/tianmind-studio/expert-review-panel/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Claude Skill](https://img.shields.io/badge/built%20for-Claude%20Skill-8A2BE2)](https://docs.claude.com)
+[![Claude / Codex Skill](https://img.shields.io/badge/built%20for-Claude%20%2F%20Codex%20Skill-8A2BE2)](./README.md#install)
 
 ## Quick Links
 
@@ -277,4 +277,4 @@ This project focuses on cross-artifact review panels, localized Chinese academic
 
 [MIT](./LICENSE)
 
-**Built by 天智 · Powered by Claude Skill**
+**Built by 天智 · Built for Claude / Codex**
